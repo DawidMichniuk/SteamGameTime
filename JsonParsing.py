@@ -4,7 +4,9 @@ import requests # used for web scrapping the data from steam's api website
 
 # Important!
 # Input your own key and steamID.
+print("input your API key: ")
 key = input()
+print("input your steamID")
 steamID = input()
 
 # What is this magic link?
@@ -18,7 +20,7 @@ websiteURL =  "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?k
 
 response = requests.get(websiteURL)
 
-# Change that later on so users can add their API key and account id
+testing = json.loads(response.text)
 
 # First we want to get what's inside the "response" part of the dictionary
 x = testing.get("response")
@@ -45,4 +47,4 @@ for i in range(len(games)):
         total_time_played += games[i].get('playtime_forever')
 
 print("You've played a total of: "+ str(count) + " games, meaning you played only through about: " + str(round((count / y) * 100)) + " % of your games.")
-print("You have played a total of " + str(round(total_time_played, 3) + " hours across all your games.")
+print("You have played a total of " + str(round(total_time_played, 3) + " hours across all your games."))
