@@ -4,8 +4,8 @@ import requests # used for web scrapping the data from steam's api website
 
 # Important!
 # Input your own key and steamID.
-key =
-steamID =
+key = input()
+steamID = input()
 
 # What is this magic link?
 # It connects to steam api to get all the owned games, along with their titles
@@ -19,7 +19,6 @@ websiteURL =  "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?k
 response = requests.get(websiteURL)
 
 # Change that later on so users can add their API key and account id
-
 
 # First we want to get what's inside the "response" part of the dictionary
 x = testing.get("response")
