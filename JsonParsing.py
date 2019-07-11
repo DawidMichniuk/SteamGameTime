@@ -1,6 +1,9 @@
 import json # appid and playtime comes from json file from steam
 import requests # used for web scrapping the data from steam's api website
 
+
+# Important!
+# Input your own key and steamID.
 key =
 steamID =
 
