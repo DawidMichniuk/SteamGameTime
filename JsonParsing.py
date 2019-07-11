@@ -37,6 +37,7 @@ print("You have about: "+ str(y)+ " games (that should include all the dlcs)")
 
 # This will serve to count how many games you have actually played.
 count = 0
+total_time_played = 0
 # As long as there is an appid to get do the loop
 for i in range(len(games)):
     # Only data in every iteration is appid and playtime forever
