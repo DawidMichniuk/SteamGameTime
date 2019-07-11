@@ -19,8 +19,7 @@ websiteURL =  "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?k
 response = requests.get(websiteURL)
 
 # Change that later on so users can add their API key and account id
-# The original link: response = requests.get("http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=C1E13D40571114336AAF4E64A1473BB9&steamid=76561198064555348&format=json")
-testing = json.loads(response.text)
+
 
 # First we want to get what's inside the "response" part of the dictionary
 x = testing.get("response")
