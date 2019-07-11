@@ -9,3 +9,7 @@ Since our application is used locally you can enter 127.0.0.1 as domain.
 You can get steamID from https://store.steampowered.com/ and clicking on your nickname
 which would then transfer you to something like:
 https://steamcommunity.com/profiles/XXXXXXXXXXXXXXXX/home/
+
+
+Requires requests module for python:
+pip install requests
