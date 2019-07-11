@@ -38,7 +38,8 @@ print("You have about: "+ str(y)+ " games (that should include all the dlcs)")
 # This will serve to count how many games you have actually played.
 count = 0
 total_time_played = 0
-# As long as there is an appid to get do the loop
+
+# As long as there is something to get from the list of dictionaries.
 for i in range(len(games)):
     # Only data in every iteration is appid and playtime forever
     # if you actually played the game at all
@@ -48,4 +49,4 @@ for i in range(len(games)):
         total_time_played += games[i].get('playtime_forever')
 
 print("You've played a total of: "+ str(count) + " games, meaning you played only through about: " + str(round((count / y) * 100)) + " % of your games.")
-print("You have played a total of " + str(round(total_time_played, 3)) + " hours across all your games.")
+print("You have played a total of " + str(round((total_time_played / 60), 3) ) + " hours across all your games.")
