@@ -3,7 +3,6 @@
 # <div class="game_purchase_price price" data-price-final="719">£7.19</div>
 # 2) Put everything into different classes, create a main function and some sort of menu
 # so that you can check out multiple accounts instead of restarting the program every time
-# 3) save results to file named after steamID
 
 import json # appid and playtime comes from json file from steam
 import requests # used for web scrapping the data from steam's api website
@@ -14,6 +13,9 @@ import requests # used for web scrapping the data from steam's api website
 #    exit() # for now you just have to restart the program
 print("SteamGameTime counts how many hours have you spent on games in total across your steam library")
 print("In future versions it will also count the money per hour value of each game.")
+
+key_was_received = False
+
 try:
     # Setting up (opening) a file to read the API key from.
     keyFile = open("key.txt", "r")
@@ -23,26 +25,28 @@ try:
         key = input()
     else:
         key = keyFromFile
+    key_was_received = True
 # If there is no key.txt file then just ask for the API key.
 except FileNotFoundError:
     print("For future use, you can simply create a file called 'key.txt' with your key inside it.")
-    print("input your API key:")
-    key = input()
+    key = input("input your API key: ")
 
 
 continueTheLoop = ""
 while continueTheLoop == "":
-    print("input your steamID: ")
-    steamID = input()
-    fileWithData = open((str(steamID) + ".txt"), "w+" )
+    try:
+        steamID = input("input your steamID: ")
+        fileWithData = open((str(steamID) + ".txt"), "w+" )
+        websiteURL =  "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key="+key+"&steamid="+steamID+"&format=json&include_appinfo=1&include_played_free_games=1"
+        # This actually downloads the website so that python can process it.
+        response = requests.get(websiteURL)
 
-    websiteURL =  "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key="+key+"&steamid="+steamID+"&format=json&include_appinfo=1&include_played_free_games=1"
-    # This actually downloads the website so that python can process it.
-    response = requests.get(websiteURL)
-
-    # This simply parses/loads the json file into text so that python can see it as
-    # dictionaries and lists.
-    mainJsonFile = json.loads(response.text)
+        # This simply parses/loads the json file into text so that python can see it as
+        # dictionaries and lists.
+        mainJsonFile = json.loads(response.text)
+    except json.decoder.JSONDecodeError:
+        print("You didn't enter anything for the steam id or api key OR there was a problem with what you entered.")
+        break
 
     # Get the total amount of games.
     games_owned = (mainJsonFile.get("response")).get("game_count")
@@ -59,6 +63,8 @@ while continueTheLoop == "":
         # sort the list by playtime, from highest to lowest.
         newlist = sorted(gamesList, key=lambda k: k["playtime_forever"], reverse=True)
 
+        # The list of games you haven't played.
+        list = []
         for i in range(len(newlist)):
 
             # if you actually played the game at all
@@ -67,14 +73,15 @@ while continueTheLoop == "":
                 fileWithData.write("You've spent " + str(round(float(newlist[i].get("playtime_forever") / 60), 3)) + "h playing "+ newlist[i].get("name") +".\n")
                 total_time_played += newlist[i].get('playtime_forever')
             else:
-                list = []
                 list.append(newlist[i].get("name"))
 
 
         print("Done! Check out the results in " + str(steamID) + ".txt")
-        fileWithData.write("Games you own that you haven't played at all: ")
-        for i in range(len(list)):
-            fileWithData.write(list[i])
+        fileWithData.write("Games you own that you haven't played at all:\n")
+        # Loop through everything but the last one so that i can format it nicely.
+        for i in range(len(list) - 1):
+            fileWithData.write(list[i] + ", ")
+        fileWithData.write(list[len(list) - 1] + ".\n")
         fileWithData.write("You've played a total of "+ str(games_played) + " games, meaning you played only through about " + str(round((games_played / games_owned) * 100)) + "% of your games.\n")
         fileWithData.write("You have played a total of " + str(round((total_time_played / 60), 3) ) + " hours across all your games.\n")
 
@@ -84,7 +91,6 @@ while continueTheLoop == "":
 
     except TypeError:
         print("Profile is either private or has no games")
-def closeFiles():
-    fileWithData.close()
+fileWithData.close()
+if key_was_received:
     keyFile.close()
-closeFiles()
