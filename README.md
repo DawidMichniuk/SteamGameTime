@@ -8,7 +8,7 @@ You can get a steam API key from: https://steamcommunity.com/dev/apikey
 Since this program is used locally you can enter 127.0.0.1 as domain.
 
 You can get steamID from the profile on steam's website.
-https://steamcommunity.com/profiles/XXXXXXXXXXXXXXXX/home/
+Example: https://steamcommunity.com/profiles/XXXXXXXXXXXXXXXX/home/.
 If instead of some random numbers there's a normal nickname you'll have to use
 some sort of converter you can find online.
 
