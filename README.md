@@ -12,5 +12,5 @@ Example: https://steamcommunity.com/profiles/XXXXXXXXXXXXXXXX/home/.
 If instead of some random numbers there's a normal nickname you'll have to use
 some sort of converter you can find online.
 
-Requires requests module for python:
-pip install requests
+>Requires requests module for python:
+** pip install requests **
