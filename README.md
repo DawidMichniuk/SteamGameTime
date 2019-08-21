@@ -14,4 +14,4 @@ some sort of converter you can find online.
 
 >Requires requests module for python:
 
-** pip install requests **
+**pip install requests**
