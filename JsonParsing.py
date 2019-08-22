@@ -8,9 +8,6 @@ import json # appid and playtime comes from json file from steam
 import requests # used for web scrapping the data from steam's api website
 
 
-# except json.decoder.JSONDecodeError: # if key or id is wrong
-#    print("This key or steamID does not exist.")
-#    exit() # for now you just have to restart the program
 print("SteamGameTime counts how many hours have you spent on games in total across your steam library")
 print("In future versions it will also count the money per hour value of each game.")
 
@@ -46,12 +43,12 @@ while continueTheLoop == "":
         mainJsonFile = json.loads(response.text)
     except json.decoder.JSONDecodeError:
         print("You didn't enter anything for the steam id or api key OR there was a problem with what you entered.")
+        # break the loop, close the files and then finish the program (instead of simply exiting the program).
         break
 
     # Get the total amount of games.
     games_owned = (mainJsonFile.get("response")).get("game_count")
 
-    # 'games' is a list, while x is a dictionary
     gamesList = (mainJsonFile.get("response")).get('games')
 
     # convert the number of games into string.
@@ -66,7 +63,6 @@ while continueTheLoop == "":
         # The list of games you haven't played.
         list = []
         for i in range(len(newlist)):
-
             # if you actually played the game at all
             if newlist[i].get('playtime_forever') > 0:
                 games_played += 1
