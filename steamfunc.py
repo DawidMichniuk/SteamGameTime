@@ -31,14 +31,12 @@ def get_steam_id():
 
 
 def get_data_from_steam():
-    global mainJsonFile, fileWithData
+    global mainJsonFile
     if key == "":
         print("Did you set up the API key?")
     if steamID == "":
         print("I need the steam ID of the account you want to find.")
     try:
-        # Create the file to save the data to.
-        fileWithData = open((str(steamID) + ".txt"), "w+" )
         websiteURL =  "http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key="+key+"&steamid="+steamID+"&format=json&include_appinfo=1&include_played_free_games=1"
         # This actually downloads the website so that python can process it.
         response = requests.get(websiteURL)
@@ -54,6 +52,9 @@ def get_data_from_steam():
         print("or double check that the profile exists!")
 
 def parse_data():
+    global fileWithData
+    # Create the file to save the data to.
+    fileWithData = open((str(steamID) + ".txt"), "w+" )
     # Get the total amount of games.
     games_owned = (mainJsonFile.get("response")).get("game_count")
 
