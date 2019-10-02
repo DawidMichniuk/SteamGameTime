@@ -7,7 +7,7 @@ def locate_the_api_key():
     print("Have you already put the API key in the key.txt file? Y/N")
     answer = input()
     key_from_file = ""
-    if answer == 'Y':
+    if answer == 'Y' or answer == 'y':
         # the '+' creates the file if it doesnt exists.
         keyFile = open("key.txt", "r+")
         key_from_file = keyFile.read()
@@ -16,11 +16,13 @@ def locate_the_api_key():
         else:
             key = key_from_file
             print("Key found.")
-    if answer == 'N':
+    if answer == 'N' or answer == 'n':
         key = input("input your API key: ")
 
         keyFile = open("key.txt", "w+")
         key_from_file = keyFile.write(key)
+    else:
+        print("I'm sorry, the given input does not match what was expected!")
     keyFile.close()
 
 def get_steam_id():
