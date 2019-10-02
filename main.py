@@ -1,13 +1,13 @@
+#!/usr/bin/python3
+
 # TODO: 1) Somehow get access to prices someone has paid for these games.
 # https://store.steampowered.com/app/{appID} works well.
 # <div class="game_purchase_price price" data-price-final="719">£7.19</div>
 
-import json
-import requests
-import sys
-import steamfunc
-# Global variables
-# key,steamID = ""
+import json # used to parse the data from json to usable data
+import requests # used to get the data from the API
+import sys # used to exit the app
+import steamfunc # the local function
 
 print("Hello!")
 def menu():
@@ -27,7 +27,6 @@ def menu():
         print("**********************")
         users_choice = int(input())
 
-        # Work in progress.
         if users_choice == 1:
             steamfunc.locate_the_api_key()
         elif users_choice == 2:
@@ -39,7 +38,8 @@ def menu():
         elif users_choice == 5:
             sys.exit()
         else:
-            print("The number given does not match with the numbers from the list.")
+            print("The number given doesn't match any number from the list.")
+
 # Makes it so the menu runs at startup!
 if __name__ == "__main__":
     menu()
