@@ -43,6 +43,3 @@ def menu():
 # Makes it so the menu runs at startup!
 if __name__ == "__main__":
     menu()
-    
-def test_placeholder():
-    pass
