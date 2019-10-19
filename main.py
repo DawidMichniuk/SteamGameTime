@@ -45,6 +45,8 @@ def menu():
 if __name__ == "__main__":
     menu()
 
-def test_main():
-    with pytest.raises(SystemExit):
-        menu()
+def func(x):
+    return x + 1
+
+def test_answer():
+    assert func(3) == 5
