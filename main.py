@@ -8,6 +8,7 @@ import json # used to parse the data from json to usable data
 import requests # used to get the data from the API
 import sys # used to exit the app
 import steamfunc # the local function
+import pytest # trying to figure out how to test.
 
 print("Hello!")
 def menu():
@@ -43,3 +44,7 @@ def menu():
 # Makes it so the menu runs at startup!
 if __name__ == "__main__":
     menu()
+
+def test_main():
+    with pytest.raises(SystemExit):
+        menu()
