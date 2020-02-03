@@ -39,7 +39,7 @@ def menu():
         elif users_choice == 5:
             sys.exit()
         else:
-            print("The number given doesn't match any number from the list.")
+            print("The given input doesn't match any number from the list.")
 
 # Makes it so the menu runs at startup!
 if __name__ == "__main__":
