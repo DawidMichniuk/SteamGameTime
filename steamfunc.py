@@ -92,7 +92,12 @@ def parse_data():
                 # if you actually played the game at all
                 if newlist[i].get('playtime_forever') > 0:
                     games_played += 1
-                    fileWithData.write("You've spent " + str(round(float(newlist[i].get("playtime_forever") / 60), 3)) + "h playing "+ newlist[i].get("name") +".\n")
+                    #escape special characters, for now simply dont get the name of the game.
+                    #TODO: fix later, include chinese chars.
+                    try:
+                        fileWithData.write("You've spent " + str(round(float(newlist[i].get("playtime_forever") / 60), 3)) + "h playing "+ newlist[i].get("name") +".\n")
+                    except UnicodeEncodeError:
+                        fileWithData.write("You've spent " + str(round(float(newlist[i].get("playtime_forever") / 60), 3)) + "h playing a game with special characters" +".\n")
                     total_time_played += newlist[i].get('playtime_forever')
                 else:
                     list.append(newlist[i].get("name"))
