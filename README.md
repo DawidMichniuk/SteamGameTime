@@ -18,7 +18,6 @@ UI:
 ![UI](https://i.imgur.com/BGvzGM5.png "UI")
 
 Output:
-
 ![Output](https://i.imgur.com/QuLyTsE.png "Output")
 
 **Requires requests module for python:**
