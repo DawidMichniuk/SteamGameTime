@@ -23,7 +23,9 @@ Output:
 
 ![Output](https://i.imgur.com/QuLyTsE.png "Output")
 
-## How to use:
+<sub><sup>Don't judge me!</sup></sub>
+
+## How to use
 
 Proceed in the natural order of 1 to 4 in the main menu loop.
 You only have to set up the API key once for every startup of the program,
