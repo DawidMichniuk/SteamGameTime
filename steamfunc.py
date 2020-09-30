@@ -23,15 +23,14 @@ def locate_the_api_key():
                 keyFile.close()
         except FileNotFoundError:
             print("File was not found!")
-    else:
-        if answer == 'N' or answer == 'n':
+    elif answer == 'N' or answer == 'n':
             key = input("input your API key: ")
 
             keyFile = open("key.txt", "w+")
             key_from_file = keyFile.write(key)
             keyFile.close()
 
-        else:
+    else:
             print("I'm sorry, the given input does not match what was expected!")
 
     #keyFile.close()
